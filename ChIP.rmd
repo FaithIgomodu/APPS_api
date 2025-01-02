@@ -14,11 +14,45 @@ Dataset is a subsuet of the lymphoblastoid cell line
  Dataset is mapped to GRCh38 the hg38 version of human genome. 
  Data is retrieved from the compGenomeRData package. 
 
-
 ###  load data 
 
-The data as two ChIP experiments;
+The data has two ChIP experiments:
+*Transcription factors : CTCF, SMC3, ZNF143, and RNA polymerase 2.
+*Histone modifications H3K4me3,H3K36me3 , H3K27ac, H3K273me
+*Input data 
 
-transcription factors : CTCF, SMC3, ZNF143, and RNA polymerase 2.
+```{r}
 
-histone modifications H3K4me3,H3K36me3 , H3K27ac, H3K273me
+#define data path 
+data_path = system.file("extdata/chip-seq", package = "compGenomRData")
+
+#list the number of files in data 
+chip_files = list.files(data_path,full.names = TRUE)
+chip_files
+
+```
+## Quality Control of ChIP Data
+
+the objective is to determine read quality 
+and if the chromatin immunoprecipitation enrichment 
+exerpiment was successful. There are four steps in 
+ChIP quality control;
+1. sample correlation clustering 
+2. Data visualization 
+3. Average fragment length determination 
+4. Visualization of GC bias. 
+
+#1 Sample Correlation Clustering 
+
+##Load libraries 
+```{r}
+library(GenomeInfoDb)
+library(compGenomRData)
+library(tidyverse)
+```
+
+
+```{r}
+hg_chrs = getChromInfoFromUCSC('hg38')
+hg_chrs
+```
