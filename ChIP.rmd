@@ -1,0 +1,24 @@
+---
+title: "ChIP-Analysis"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Dataset 
+
+Dataset is a subsuet of the lymphoblastoid cell line
+ GM12878 from the ENCODE project Consortium 2012. 
+ Dataset is mapped to GRCh38 the hg38 version of human genome. 
+ Data is retrieved from the compGenomeRData package. 
+
+
+###  load data 
+
+The data as two ChIP experiments;
+
+transcription factors : CTCF, SMC3, ZNF143, and RNA polymerase 2.
+
+histone modifications H3K4me3,H3K36me3 , H3K27ac, H3K273me
